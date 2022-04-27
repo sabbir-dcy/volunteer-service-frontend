@@ -8,11 +8,9 @@ const Activities = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/activities')
+      .get('https://sheltered-mountain-03833.herokuapp.com/api/activities')
       .then((res) => setActivities(res.data))
   }, [])
-
-  
 
   return (
     <div className='w-4/5 mx-auto mt-12 text-center sm:w-fit'>

@@ -11,17 +11,22 @@ const MyActivities = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/my_activities?email=${user.email}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      })
+      .get(
+        `https://sheltered-mountain-03833.herokuapp.com/api/my_activities?email=${user.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
       .then((res) => setmyActivities(res.data))
   }, [user])
 
   const handleDelete = (_id) => {
     axios
-      .delete(`http://localhost:5000/api/my_activities?id=${_id}`)
+      .delete(
+        `https://sheltered-mountain-03833.herokuapp.com/api/my_activities?id=${_id}`
+      )
       .then((res) => {
         toast.success('activity deleted', {
           position: 'bottom-center',

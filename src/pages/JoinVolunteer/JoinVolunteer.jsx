@@ -13,14 +13,19 @@ const JoinVolunteer = () => {
       ...data,
       email: user?.email,
     }
-    axios.post('http://localhost:5000/api/activity', activity).then((res) => {
-      toast.success('joined successfully', {
-        position: 'bottom-center',
-        autoClose: 3000,
-        toastId: '1',
+    axios
+      .post(
+        'https://sheltered-mountain-03833.herokuapp.com/api/activity',
+        activity
+      )
+      .then((res) => {
+        toast.success('joined successfully', {
+          position: 'bottom-center',
+          autoClose: 3000,
+          toastId: '1',
+        })
+        console.log(res)
       })
-      console.log(res)
-    })
   }
 
   return (
