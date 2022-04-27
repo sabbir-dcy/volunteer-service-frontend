@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 import { auth } from '../../firebase/firebase.init'
 
 const JoinVolunteer = () => {
@@ -12,10 +13,14 @@ const JoinVolunteer = () => {
       ...data,
       email: user?.email,
     }
-    axios
-      .post('http://localhost:5000/api/activity', activity)
-      .then((res) => console.log(res))
-    console.log(activity)
+    axios.post('http://localhost:5000/api/activity', activity).then((res) => {
+      toast.success('joined successfully', {
+        position: 'bottom-center',
+        autoClose: 3000,
+        toastId: '1',
+      })
+      console.log(res)
+    })
   }
 
   return (

@@ -2,19 +2,26 @@ import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { auth } from '../../firebase/firebase.init'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
+import { useToken } from '../../hooks/useToken'
 
 const SocialLogin = () => {
   const [signInWithGoogle, user] = useSignInWithGoogle(auth)
+  const [token] = useToken(user)
+
   const navigate = useNavigate()
 
   const location = useLocation()
   const path = location.state?.from?.pathname
   useEffect(() => {
-    if (user) {
+    if (token) {
       const from = path || '/'
       navigate(from, { replace: true })
     }
-  }, [user, navigate, path])
+  }, [user, navigate, path, token])
+
+  const handleSignWithGoogle = () => {
+    signInWithGoogle()
+  }
 
   return (
     <div
@@ -34,9 +41,7 @@ const SocialLogin = () => {
       <div className='space-y-5 text-center'>
         <h2 className='text-3xl font-semibold'>Login with</h2>
         <button
-          onClick={() => {
-            signInWithGoogle()
-          }}
+          onClick={handleSignWithGoogle}
           className='
         py-2
         w-4/5

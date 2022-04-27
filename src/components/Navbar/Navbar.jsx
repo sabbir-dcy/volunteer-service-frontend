@@ -52,7 +52,8 @@ const Navbar = () => {
           <Link to={'/'}>home</Link>
           <Link to={'/join'}>join</Link>
           <Link to={'/'}>events</Link>
-          <Link to={'/activities'}>activities</Link>
+          <Link to={'/my_activities'}>my activities</Link>
+          <Link to={'/activities'}>all activities</Link>
           {user ? (
             <button
               className='bg-blue-500 text-white py-2 px-3 rounded-md'

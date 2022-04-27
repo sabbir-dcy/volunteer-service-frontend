@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+
 import SingleActivity from '../../components/SingleActivity/SingleActivity'
 
 const Activities = () => {
@@ -10,9 +11,12 @@ const Activities = () => {
       .get('http://localhost:5000/api/activities')
       .then((res) => setActivities(res.data))
   }, [])
+
+  
+
   return (
     <div className='w-4/5 mx-auto mt-12 text-center sm:w-fit'>
-      <table>
+      <table className='border'>
         <thead>
           <tr className='border-b-2 bg-blue-500 text-white'>
             <th className='py-2 px-4 font-normal'>volunteer name</th>

@@ -7,10 +7,14 @@ import Home from './pages/Home/Home'
 import JoinVolunteer from './pages/JoinVolunteer/JoinVolunteer'
 import Register from './pages/Register/Register'
 import Activities from './pages/Activities/Activities'
+import MyActivities from './pages/MyActivities/MyActivities'
+import { Zoom, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
     <div className='App'>
+      <ToastContainer transition={Zoom}></ToastContainer>
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home />}></Route>
@@ -26,7 +30,22 @@ function App() {
             </RequireAuth>
           }
         ></Route>
-        <Route path='/activities' element={<Activities />}></Route>
+        <Route
+          path='/activities'
+          element={
+            <RequireAuth>
+              <Activities />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path='/my_activities'
+          element={
+            <RequireAuth>
+              <MyActivities />
+            </RequireAuth>
+          }
+        ></Route>
       </Routes>
     </div>
   )
